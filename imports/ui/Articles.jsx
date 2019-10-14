@@ -1,4 +1,5 @@
 import React from 'react'
+import ArticleList from './ArticleList'
 
 class Articles extends React.Component {
   state = {
@@ -20,7 +21,7 @@ class Articles extends React.Component {
     return (
       <>
         <h2>Articles</h2>
-        { articles && (<pre>{JSON.stringify(articles, null, 4)}</pre>) }
+        <ArticleList articles={articles} />
       </>
     );
   }

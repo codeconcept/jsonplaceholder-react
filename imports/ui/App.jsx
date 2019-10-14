@@ -1,13 +1,9 @@
 import React from 'react';
-import Hello from './Hello.jsx';
-import Info from './Info.jsx';
 import Articles from './Articles';
 
 const App = () => (
   <div>
-    <h1>Welcome to Meteor!</h1>
-    <Hello />
-    <Info />
+    <h1>Meteor with React</h1>
     <Articles />
   </div>
 );
