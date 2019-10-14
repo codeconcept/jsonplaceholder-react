@@ -1,5 +1,6 @@
 import React from 'react'
 import ArticleList from './ArticleList'
+import ArticleForm from './ArticleForm'
 
 class Articles extends React.Component {
   state = {
@@ -15,12 +16,18 @@ class Articles extends React.Component {
         })
       })
   }
+
+  handleSubmit = (e, article) => {
+    e.preventDefault()
+    console.log(e, article)
+  }
   
   render() { 
     const { articles } = this.state
     return (
       <>
         <h2>Articles</h2>
+        <ArticleForm onAdd={(e, article) => this.handleSubmit(e, article)} />
         <ArticleList articles={articles} />
       </>
     );
