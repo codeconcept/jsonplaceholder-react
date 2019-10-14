@@ -4,7 +4,8 @@ import ArticleForm from './ArticleForm'
 
 class Articles extends React.Component {
   state = {
-    articles: []
+    articles: [],
+    response: null
   }
 
   componentDidMount() {
@@ -19,15 +20,24 @@ class Articles extends React.Component {
 
   handleSubmit = (e, article) => {
     e.preventDefault()
-    console.log(e, article)
+    fetch('https://jsonplaceholder.typicode.com/posts', { method: 'POST', body: article})
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          response: res
+        })
+      })
   }
   
   render() { 
-    const { articles } = this.state
+    const { articles, response } = this.state
     return (
       <>
         <h2>Articles</h2>
         <ArticleForm onAdd={(e, article) => this.handleSubmit(e, article)} />
+        <div>
+          {(response && response.id) ? (<span>{`Article with ${response.id} ID created`}</span>) : (<span></span>)}
+        </div>
         <ArticleList articles={articles} />
       </>
     );
